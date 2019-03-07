@@ -21,7 +21,6 @@ Alias: `e`
 Arguments:
 
  - `url`: The URL from which to download.
- - `--priority (-p)`: A number denoting the priority of this job. The lower the value, the earlier **dlq** will execute it.
  - `--start <TIME>`: The time at which to start the download. Must be given in 24-hour format.
  - `--stop <TIME>`: The time at which to stop the download. Must be given in 24-hour format.
  - `--dest (-d)`: The directory to which the download is saved. Defaults to `$HOME/Downloads`.
@@ -30,8 +29,8 @@ The flags `--start`, `--stop`, and `--dest` can be configured to take a default 
 
 Examples:
 ```
-$ dlq enqueue <URL> --priority 2 --start 04:00 --stop 07:30 --dest '~/Pictures'
-$ dlq e <URL> -p 2 --start 04:00 --stop 07:30 -d '~/Pictures'
+$ dlq enqueue <URL> --start 04:00 --stop 07:30 --dest '~/Pictures'
+$ dlq e <URL> --start 04:00 --stop 07:30 -d '~/Pictures'
 $ dlq e <URL>
 ```
 
