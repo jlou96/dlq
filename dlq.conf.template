@@ -1,0 +1,9 @@
+# Configuration settings go here
+
+# Time period to do jobs
+# All times in 24-hour format
+start = 02:00
+stop  = 08:00
+
+# Default download destination
+dest = '~/Downloads'
