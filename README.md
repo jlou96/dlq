@@ -43,13 +43,12 @@ Alias: `d`
 
 Parameters:
 
- - `--url (-u)`: The URL that identifies the job dequeue.
+ - `url`: The URL that identifies the job dequeue.
 
 Examples:
 ```
 $ dlq dequeue <URL>
 $ dlq d <URL>
-$ dlq dequeue
 ```
 
 ### List
