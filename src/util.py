@@ -1,6 +1,10 @@
 """
 Utility module
 """
+import re
+
+from crontab import CronTab
+
 
 ###########
 # CONSTANTS
@@ -8,7 +12,7 @@ Utility module
 
 
 CONFIG_FILE_PATH = '~/.config/dlq.conf'
-TIME_FORMAT_REGEX = '0?(\d):(\d){2}'
+TIME_FORMAT_REGEX = re.compile('0?(\d):(\d){2}')
 VALID_ACTIONS = set(['enqueue', 'e', 'dequeue', 'd', 'print', 'p'])
 
 
@@ -122,13 +126,13 @@ def check_valid_args(args):
     if args.action not in VALID_ACTIONS:
         raise ValueError('Not a valid action: {}'.format(args.action))
     
-    if not match(TIME_FORMAT_REGEX, args.start):
+    if not re.match(TIME_FORMAT_REGEX, args.start):
         raise ValueError('Not a valid 24-hour format time: {}'.format(args.start))
     
-    if not match(TIME_FORMAT_REGEX, args.stop):
+    if not re.match(TIME_FORMAT_REGEX, args.stop):
         raise ValueError('Not a valid 24-hour format time: {}'.format(args.stop))
     
-    if not match(TIME_FORMAT_REGEX, args.dest):
+    if not re.match(TIME_FORMAT_REGEX, args.dest):
         raise ValueError('Not a valid destination: {}'.format(args.dest))
 
 
@@ -139,8 +143,6 @@ def build_job(values):
     Args:
         values (dict) - data to build the job.
     """
-    import crontab
-
     # Current user's cron
     cron = crontab.CronTab(user=True)
 
@@ -156,7 +158,7 @@ def build_job(values):
 
     # Build job
     now = datetime.now()
-    do_now = ((start_m <= now.minute and start_h <= now.hour) or start_h < now.hour) and
+    do_now = ((start_m <= now.minute and start_h <= now.hour) or start_h < now.hour) and \
              ((now.minute < stop_m and now.hour <= stop_h) or now.hour < stop_h)
     day = now.day if do_now else now.day + 1
     dow = now.weekday() if do_now else now.weekday() + 1

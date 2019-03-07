@@ -1,5 +1,6 @@
 import datetime
-import crontab
+
+from crontab import CronTab
 
 
 cron = CronTab(tabfile='/etc/crontab', user=True)
@@ -61,7 +62,7 @@ def print_job(url):
         url (str) - the URL that uniquely identifies the CronJob to print.
     """
     for job in cron:
-        if job.command == 'wget {}'.format(url)
+        if job.command == 'wget {}'.format(url):
             print(job)
 
 

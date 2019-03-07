@@ -53,7 +53,7 @@ def build_parser():
         'action',
         metavar='ACTION',
         nargs='?',
-        default='enqueue'
+        default='enqueue',
         help="""
         The action to execute.
 
@@ -70,7 +70,7 @@ def build_parser():
         'url',
         metavar='URL',
         nargs='?',
-        default=''
+        default='',
         help="""
         A URL to attempt to download from.
 
