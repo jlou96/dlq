@@ -7,6 +7,7 @@ Utility module
 ###########
 
 
+CONFIG_FILE_PATH = '~/.config/dlq.conf'
 TIME_FORMAT_REGEX = '0?(\d):(\d){2}'
 VALID_ACTIONS = set(['enqueue', 'e', 'dequeue', 'd', 'print', 'p'])
 
@@ -22,14 +23,17 @@ def get_config():
     """
     config = {}
 
-    with open('config') as f:
-        for line in f:
-            line = line.strip()
-            # Ignore comments and empty lines
-            if not line or line[0] == '#':
-                continue
-            key, val = line.split('=', 1)
-            config[key] = val
+    try:
+        with open('CONFIG_FILE_PATH') as f:
+            for line in f:
+                line = line.strip()
+                # Ignore comments and empty lines
+                if not line or line[0] == '#':
+                    continue
+                key, val = line.split('=', 1)
+                config[key] = val
+    except OSError:
+        pass
 
     return config
 
@@ -38,6 +42,13 @@ def get_values(args, config):
     """
     Returns a dictionary containing the appropriate values to use
     based on the user's config file and the command line arguments.
+
+    Args:
+        args (argparse.Namespace) - the command line arguments.
+        config (dict) - data from the user's config file.
+    
+    Returns:
+        A dictionary representing the values to use.
     """
     values = {}
 
@@ -66,6 +77,10 @@ def get_values(args, config):
 def check_missing_args(args, config):
     """
     Raises an error if there is an illegal combination of arguments passed in.
+
+    Args:
+        args (argparse.Namespace) - the command line arguments.
+        config (dict) - data from the user's config file.
     """
 
     if not args.action:
@@ -99,6 +114,9 @@ def check_missing_args(args, config):
 def check_valid_args(args):
     """
     Checks if the command line arguments are valid.
+
+    Args:
+        args (argparse.Namespace) - the command line arguments.
     """
     
     if args.action not in VALID_ACTIONS:
@@ -117,6 +135,9 @@ def check_valid_args(args):
 def build_job(values):
     """
     Builds and returns a cronjob.
+
+    Args:
+        values (dict) - data to build the job.
     """
     import crontab
 

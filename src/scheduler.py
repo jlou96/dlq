@@ -8,6 +8,9 @@ cron = CronTab(tabfile='/etc/crontab', user=True)
 def handle(values):
     """
     Handles an incoming job.
+
+    Args:
+        values (dict) - data to build the job.
     """
     if values['action'] == 'print':
         if values.print_all:
@@ -53,6 +56,9 @@ def dequeue(url):
 def print_job(url):
     """
     Prints a specific dlq job, uniquely identified by url.
+
+    Args:
+        url (str) - the URL that uniquely identifies the CronJob to print.
     """
     for job in cron:
         if job.command == 'wget {}'.format(url)

@@ -29,6 +29,15 @@ class HelpFormatter(argparse.RawDescriptionHelpFormatter):
 
 
 def build_parser():
+    """
+    Builds the argument parser.
+
+    An in-depth documentation on valid arguments
+    and their usage can be found in the README.
+
+    Returns:
+        The argument parser.
+    """
     parser = argparse.ArgumentParser(
         prog='dlq',
         usage='dlq [OPTIONS] <URL>',
@@ -123,3 +132,5 @@ def build_parser():
         When passed along with a print command, prints all existing jobs.
         """
     )
+
+    return parser
