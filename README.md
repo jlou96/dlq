@@ -1,6 +1,6 @@
 # dlq
 
-**dlq**, short for *download queue*, is a command-line utility that schedules downloads, built upon `wget` and [Python Crontab](https://gitlab.com/doctormo/python-crontab/).
+dlq, short for *download queue*, is a command-line utility that schedules downloads, built upon wget and [Python Crontab](https://gitlab.com/doctormo/python-crontab/).
 
 # Installation
 
@@ -10,7 +10,7 @@ todo
 
 ## Commands
 
-**dlq** accepts three basic commands: enqueue, dequeue, and list.
+dlq accepts three basic commands: `enqueue`, `dequeue`, and `print`.
 
 ### Enqueue
 
@@ -70,5 +70,5 @@ $ dlq p -a
 
 ## Configuration
 
-**dlq** checks for a configuration file named `dlq.conf` in `$HOME/.config/dlq/`.
+dlq checks for a configuration file named `dlq.conf` in `$HOME/.config/dlq/`.
 A template can be found in the project directory.
