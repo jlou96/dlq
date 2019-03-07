@@ -51,20 +51,25 @@ $ dlq dequeue <URL>
 $ dlq d <URL>
 ```
 
-### List
+### Print
 
-Prints the all current jobs to console.
+Description: Prints jobs to console.
 
-Alias: `l`
+Alias: `p`
+
+Parameters:
+
+ - `url`: The URL that identifies the job to print.
+ - `--all (-a)`: A flag that causes all enqueued jobs to be printed.
 
 Examples:
 ```
-$ dlq list
-$ dlq l
+$ dlq print <URL>
+$ dlq p <URL>
+$ dlq p -a
 ```
 
 ## Configuration
 
 **dlq** checks for a configuration file named `dlq.conf` in `$HOME/.config/dlq/`.
 A template can be found in the project directory.
-
